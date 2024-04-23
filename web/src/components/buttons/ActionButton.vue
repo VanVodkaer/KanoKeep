@@ -6,7 +6,6 @@
 
 <style scoped>
 .action-btn {
-  margin-right: 5px;
   padding: 5px 10px;
   border: none;
   border-radius: 5px;
