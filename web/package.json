@@ -1,0 +1,31 @@
+{
+  "name": "kanokeep-web",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "pinia": "^2.1.7",
+    "vue": "^3.4.21",
+    "vue-router": "^4.3.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.0.4",
+    "vite": "^5.2.8"
+  },
+  "description": "小鹿记账❤️",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VanVodkaer/KanoKeep.git"
+  },
+  "author": "VanVodkaer",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/VanVodkaer/KanoKeep/issues"
+  },
+  "homepage": "https://github.com/VanVodkaer/KanoKeep#readme"
+}
