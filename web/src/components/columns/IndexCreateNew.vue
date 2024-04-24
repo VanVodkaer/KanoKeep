@@ -22,6 +22,15 @@ function handleCreate() {
   money.value = 0; // 清空金额输入
   item.value = ""; // 清空物品输入
 }
+
+import { useStatusStore } from "@/stores/status";
+const StatusStore = useStatusStore();
+
+function handleCancel() {
+  StatusStore.changeisCreating();
+  money.value = 0;
+  item.value = "";
+}
 </script>
 
 <template>
@@ -30,7 +39,7 @@ function handleCreate() {
     <span>名称：</span><input type="text" v-model="item" /> <span>金额：</span><input type="text" v-model="money" />
     <span
       ><ActionButton style="margin-left: 10px" @click="handleCreate()"> 添加 </ActionButton>
-      <DeleteButton style="margin-left: 10px">取消</DeleteButton></span
+      <DeleteButton style="margin-left: 10px" @click="handleCancel()">取消</DeleteButton></span
     >
   </section>
 </template>
