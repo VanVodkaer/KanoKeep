@@ -9,8 +9,8 @@ const money = ref(0);
 import { useListsStore } from "@/stores/list.js";
 const ListsStore = useListsStore();
 function handleCreate() {
-  if (money.value === "") {
-    alert("请输入金额!");
+  if (money.value === "" || isNaN(parseFloat(money.value))) {
+    alert("请正确输入金额!");
     money.value = 0; // 清空金额输入
     return;
   }
