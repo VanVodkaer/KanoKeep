@@ -2,7 +2,7 @@
 import DeleteButton from "@/components/buttons/DeleteButton.vue";
 import EditButton from "@/components/buttons/EditButton.vue";
 import ActionButton from "@/components/buttons/ActionButton.vue";
-import { computed, ref } from "vue";
+import { computed, ref, watch } from "vue";
 import { useListsStore } from "@/stores/list";
 const ListsStore = useListsStore();
 
@@ -41,16 +41,27 @@ function deleteEdit() {
 
 const displayMoney = computed(() => {
   if (props.item.money > 0) {
-    return "收入 ￥" + props.item.money.toFixed(2);
+    return "收入 +￥" + props.item.money.toFixed(2);
   } else {
-    return "支出 ￥" + Math.abs(props.item.money).toFixed(2);
+    return "支出 -￥" + Math.abs(props.item.money).toFixed(2);
+  }
+});
+
+import { useStatusStore } from "@/stores/status";
+const StatusStore = useStatusStore();
+const isChecked = ref(false);
+watch(isChecked, (newValue) => {
+  if (newValue === true) {
+    StatusStore.addItemSelect(props.item.date);
+  } else {
+    StatusStore.delItemSelect(props.item.date);
   }
 });
 </script>
 
 <template>
   <li>
-    <input type="checkbox" :id="item.id" />
+    <input type="checkbox" :id="item.id" v-model="isChecked" />
     <label v-if="!isEdit" :for="item.id">{{ displayMoney }} @ {{ item.item }}</label>
     <label v-else for="item.id">
       <span>金额：</span>

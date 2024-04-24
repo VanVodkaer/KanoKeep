@@ -24,7 +24,10 @@ export const useListsStore = defineStore("lists", () => {
   }
   function delList(dateIndex) {
     const index = list.value.findIndex((item) => item.date === dateIndex);
-    list.value.splice(index, 1);
+    //执行删除操作前检查 index 是否有效
+    if (index !== -1) {
+      list.value.splice(index, 1);
+    }
     localWrite(list.value);
   }
 
