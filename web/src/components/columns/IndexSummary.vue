@@ -12,7 +12,7 @@ const StatusStore = useStatusStore();
 <template>
   <section id="account-summary">
     <h2>账户概览</h2>
-    <p>总余额: ¥{{ ListsStore.totalMoney || 0 }}</p>
+    <p>总余额: ¥{{ ListsStore.totalMoney.toFixed(2) || 0 }}</p>
     <ActionButton id="add-entry" @click="StatusStore.changeisCreating()" style="margin-right: 10px">
       新增记账
     </ActionButton>

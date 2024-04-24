@@ -19,7 +19,7 @@ export const useListsStore = defineStore("lists", () => {
     }
   }
   function addList(newItem) {
-    list.value.push(newItem);
+    list.value.unshift(newItem);
     localWrite(list.value);
   }
   function delList(dateIndex) {

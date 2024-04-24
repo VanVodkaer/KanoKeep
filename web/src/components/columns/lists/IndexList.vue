@@ -41,9 +41,9 @@ function deleteEdit() {
 
 const displayMoney = computed(() => {
   if (props.item.money > 0) {
-    return "收入 ￥" + props.item.money;
+    return "收入 ￥" + props.item.money.toFixed(2);
   } else {
-    return "支出 ￥" + Math.abs(props.item.money);
+    return "支出 ￥" + Math.abs(props.item.money).toFixed(2);
   }
 });
 </script>
@@ -53,10 +53,10 @@ const displayMoney = computed(() => {
     <input type="checkbox" :id="item.id" />
     <label v-if="!isEdit" :for="item.id">{{ displayMoney }} @ {{ item.item }}</label>
     <label v-else for="item.id">
-      <span>名称：</span>
-      <input type="text" v-model="itemEdit" style="margin-right: 10px" />
       <span>金额：</span>
       <input type="text" v-model="moneyEdit" />
+      <span>名称：</span>
+      <input type="text" v-model="itemEdit" style="margin-right: 10px" />
     </label>
     <div class="btn-div">
       <EditButton v-if="!isEdit" style="margin-left: 10px" @click="editItem()">编辑</EditButton>
