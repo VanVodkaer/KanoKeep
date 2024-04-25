@@ -13,18 +13,18 @@ import { useListsStore } from "@/stores/list.js";
 const ListsStore = useListsStore();
 function handleCreate() {
   if (money.value === "" || isNaN(parseFloat(money.value))) {
-    alert("请正确输入金额!");
+    ElMessageBox.alert("请正确输入金额!", "提示", {
+      confirmButtonText: "OK",
+    });
     money.value = 0; // 清空金额输入
-    setTimeout(() => {
-      moneyElement.value.focus();
-    }, 0);
+    moneyElement.value.focus();
     return;
   }
   if (item.value === "") {
-    alert("请输入记账项目!");
-    setTimeout(() => {
-      itemElement.value.focus();
-    }, 0);
+    ElMessageBox.alert("请输入记账项目!", "提示", {
+      confirmButtonText: "OK",
+    });
+    itemElement.value.focus();
     return;
   }
   ListsStore.addList({ date: +new Date(), money: parseFloat(money.value), item: item.value });

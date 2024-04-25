@@ -25,21 +25,22 @@ function editItem() {
 function cancelEdit() {
   isEdit.value = false;
 }
+
 function saveEdit() {
   if (moneyEdit.value === "" || isNaN(parseFloat(moneyEdit.value))) {
-    alert("请正确输入金额!");
+    ElMessageBox.alert("请正确输入金额!", "提示", {
+      confirmButtonText: "OK",
+    });
     moneyEdit.value = props.item.money;
-    setTimeout(() => {
-      moneyElement.value.focus();
-    }, 0);
+    moneyElement.value.focus();
     return;
   }
   if (itemEdit.value === "") {
-    alert("请输入记账项目!");
+    ElMessageBox.alert("请输入记账项目!", "提示", {
+      confirmButtonText: "OK",
+    });
     itemEdit.value = props.item.item;
-    setTimeout(() => {
-      itemElement.value.focus();
-    }, 0);
+    itemElement.value.focus();
     return;
   }
   ListsStore.updateList(props.item.date, itemEdit.value, parseFloat(moneyEdit.value));
