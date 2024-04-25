@@ -30,3 +30,6 @@ coverage
 *.tsbuildinfo
 
 KanoKeep.code-workspace
+
+electron/dist
+electron/out

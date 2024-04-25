@@ -4,7 +4,8 @@
   "description": "小鹿记账❤️",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "cd ./web && npm run build && cd ../electron && npm run start",
+    "build": "cd ./web && npm run build && cd ../electron && npm run make && echo \"OutputFile: ./electron/out\""
   },
   "repository": {
     "type": "git",
