@@ -6,16 +6,25 @@ import { ref } from "vue";
 const item = ref("");
 const money = ref(0);
 
+const itemElement = ref(null);
+const moneyElement = ref(null);
+
 import { useListsStore } from "@/stores/list.js";
 const ListsStore = useListsStore();
 function handleCreate() {
   if (money.value === "" || isNaN(parseFloat(money.value))) {
     alert("请正确输入金额!");
     money.value = 0; // 清空金额输入
+    setTimeout(() => {
+      moneyElement.value.focus();
+    }, 0);
     return;
   }
   if (item.value === "") {
     alert("请输入记账项目!");
+    setTimeout(() => {
+      itemElement.value.focus();
+    }, 0);
     return;
   }
   ListsStore.addList({ date: +new Date(), money: parseFloat(money.value), item: item.value });
@@ -36,11 +45,15 @@ function handleCancel() {
 <template>
   <section id="create-new">
     <h3>新增记账</h3>
-    <span>名称：</span><input type="text" v-model="item" /> <span>金额：</span><input type="text" v-model="money" />
-    <span
-      ><ActionButton style="margin-left: 10px" @click="handleCreate()"> 添加 </ActionButton>
-      <DeleteButton style="margin-left: 10px" @click="handleCancel()">取消</DeleteButton></span
-    >
+    <span>名称：</span>
+    <el-input v-model="item" ref="itemElement" style="width: 240px" placeholder="请输入记账名称" />
+    <span style="margin-left: 10px">金额：</span>
+    <el-input v-model="money" ref="moneyElement" style="width: 240px" placeholder="请输入金额变化" />
+
+    <span>
+      <ActionButton style="margin-left: 10px" @click="handleCreate()"> 添加 </ActionButton>
+      <DeleteButton style="margin-left: 10px" @click="handleCancel()">取消</DeleteButton>
+    </span>
   </section>
 </template>
 

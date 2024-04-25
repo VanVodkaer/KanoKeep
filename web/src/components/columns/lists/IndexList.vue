@@ -14,6 +14,9 @@ const isEdit = ref(false);
 const itemEdit = ref();
 const moneyEdit = ref();
 
+const itemElement = ref(null);
+const moneyElement = ref(null);
+
 function editItem() {
   itemEdit.value = props.item.item;
   moneyEdit.value = props.item.money;
@@ -25,11 +28,18 @@ function cancelEdit() {
 function saveEdit() {
   if (moneyEdit.value === "" || isNaN(parseFloat(moneyEdit.value))) {
     alert("请正确输入金额!");
-    moneyEdit.value = 0; // 清空金额输入
+    moneyEdit.value = props.item.money;
+    setTimeout(() => {
+      moneyElement.value.focus();
+    }, 0);
     return;
   }
   if (itemEdit.value === "") {
     alert("请输入记账项目!");
+    itemEdit.value = props.item.item;
+    setTimeout(() => {
+      itemElement.value.focus();
+    }, 0);
     return;
   }
   ListsStore.updateList(props.item.date, itemEdit.value, parseFloat(moneyEdit.value));
@@ -65,9 +75,9 @@ watch(isChecked, (newValue) => {
     <label v-if="!isEdit" :for="item.id">{{ displayMoney }} @ {{ item.item }}</label>
     <label v-else for="item.id">
       <span>金额：</span>
-      <input type="text" v-model="moneyEdit" />
-      <span>名称：</span>
-      <input type="text" v-model="itemEdit" style="margin-right: 10px" />
+      <el-input v-model="moneyEdit" ref="moneyElement" style="width: 240px" />
+      <span style="margin-left: 10px">名称：</span>
+      <el-input v-model="itemEdit" ref="itemElement" style="width: 240px" />
     </label>
     <div class="btn-div">
       <EditButton v-if="!isEdit" style="margin-left: 10px" @click="editItem()">编辑</EditButton>
