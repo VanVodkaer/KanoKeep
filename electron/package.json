@@ -34,10 +34,13 @@
   },
   "config": {
     "forge": {
-      "packagerConfig": {},
+      "packagerConfig": {
+        "name": "KanoKeep",
+        "icon": "./favicon.ico"
+      },
       "makers": [
         {
-          "name": "@electron-forge/maker-squirrel"
+          "name": "@electron-forge/maker-zip"
         }
       ]
     }

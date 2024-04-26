@@ -11,14 +11,7 @@ module.exports = {
   makers: [
     {
       name: "@electron-forge/maker-squirrel",
-      config: {
-        name: "KanoKeep",
-        author: "VanVodkaer",
-        description: "小鹿记账本❤️",
-        exe: "KanoKeep.exe",
-        setupExe: "KanoKeep_Install.exe",
-        setupIcon: path.resolve(__dirname, "./favicon.ico"),
-      },
+      config: {},
     },
   ],
   plugins: [
