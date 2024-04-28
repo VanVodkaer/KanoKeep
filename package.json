@@ -4,6 +4,7 @@
   "description": "小鹿记账❤️",
   "main": "index.js",
   "scripts": {
+    "init": "cd ./web && npm i && cd ../electron && npm i",
     "test": "cd ./web && npm run build && cd ../electron && npm run start",
     "build": "cd ./web && npm run build && cd ../electron && npm run make && echo \"OutputFile: ./electron/out\""
   },
